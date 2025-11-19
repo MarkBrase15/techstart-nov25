@@ -18,12 +18,24 @@ This project is a collaborative bulletin board webpage where participants of the
 1. Click the "Fork" button at the top right of this repository
 2. This creates a copy of the repository in your GitHub account
 
-### Step 2: Create Your Message File
+### Step 2: Clone the Repository Locally
 
-1. In your forked repository, navigate to the `messages/` folder
-2. Click "Add file" → "Create new file"
-3. Name your file: `your-username.json` (replace `your-username` with your actual GitHub username)
-4. Add your message following this format:
+1. After forking, clone your forked repository to your local machine:
+   ```sh
+   git clone https://github.com/<your-username>/techstart-nov25.git
+   ```
+   Replace `<your-username>` with your actual GitHub username.
+
+2. Navigate into the project directory:
+   ```sh
+   cd techstart-nov25
+   ```
+
+### Step 3: Create Your Message File
+
+1. In your `techstart-nov25` folder, navigate to the `messages/` folder
+2. Create new file with filename: `your-username.json` (replace `your-username` with your actual GitHub username)
+3. Add your message following this format:
 
 ```json
 {
@@ -36,7 +48,7 @@ This project is a collaborative bulletin board webpage where participants of the
 - `username`: Your GitHub username
 - `message`: Your message content
 
-### Step 3: Commit Your Changes
+### Step 4: Commit Your Changes
 
 1. Open your terminal.
 2. Stage your new file:
@@ -49,14 +61,14 @@ This project is a collaborative bulletin board webpage where participants of the
    ```
 
 
-### Step 4: Push Your Changes
+### Step 5: Push Your Changes
 
 1. Push your commit to your forked repository on GitHub:
    ```sh
    git push origin main
    ```
 
-### Step 5: Create a Pull Request
+### Step 6: Create a Pull Request
 
 1. Go to your forked repository on GitHub.
 2. Click on the "Pull requests" tab.
@@ -65,7 +77,7 @@ This project is a collaborative bulletin board webpage where participants of the
 5. Add a title and description for your pull request (optional).
 6. Click "Create pull request".
 
-### Step 6: Wait for Merge
+### Step 7: Wait for Merge
 
 Once your pull request is reviewed and merged, your message will automatically appear on the live webpage!
 
