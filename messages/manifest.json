@@ -1,12 +1,30 @@
 {
-  "generatedAt": "2025-11-20T05:55:52.281Z",
+  "generatedAt": "2025-11-20T06:06:16.593Z",
   "messages": [
-    "aremis9.json",
-    "badfile.json",
-    "cygnusitis.json",
-    "devMapute.json",
-    "example.json",
-    "fjaee.json",
-    "techstart-team.json"
+    {
+      "author": "aremis9",
+      "message": "EXCITINGGGG 🤩",
+      "filename": "aremis9.json"
+    },
+    {
+      "author": "devMapute",
+      "message": "Welcome to Seb's...",
+      "filename": "devMapute.json"
+    },
+    {
+      "author": "example-user",
+      "message": "Hello! I was here at the TechSTART November workshop! 🎉",
+      "filename": "example.json"
+    },
+    {
+      "author": "kurt",
+      "message": "test",
+      "filename": "kurt.json"
+    },
+    {
+      "author": "TechSTART Team",
+      "message": "Welcome to the Bulletin Board! This is where all participant messages will appear. Feel free to add your own message!",
+      "filename": "techstart-team.json"
+    }
   ]
 }

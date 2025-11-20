@@ -57,39 +57,21 @@ async function fetchMessages() {
         }
 
         const manifestData = await manifestResponse.json();
-        const jsonFiles = Array.isArray(manifestData.messages) ? manifestData.messages : [];
-        console.log(jsonFiles);
-        if (jsonFiles.length === 0) {
+        const messages = Array.isArray(manifestData.messages) ? manifestData.messages : [];
+        console.log(`Loaded ${messages.length} messages from manifest`);
+        
+        if (messages.length === 0) {
             showEmptyState(containerEl);
             loadingEl.classList.remove('show');
             return;
         }
 
-        // Fetch and parse each JSON file using raw GitHub URLs (no API rate limits)
-        const messages = await Promise.all(
-            jsonFiles.map(async (filename) => {
-                try {
-                    const rawUrl = buildRawUrl(filename);
-                    const fileResponse = await fetch(rawUrl);
-                    if (!fileResponse.ok) {
-                        console.warn(`Failed to fetch ${filename}`);
-                        return null;
-                    }
-                    const messageData = await fileResponse.json();
-                    return {
-                        ...messageData,
-                        filename,
-                        lastModified: filename // We'll use filename as identifier
-                    };
-                } catch (error) {
-                    console.warn(`Error parsing ${filename}:`, error);
-                    return null;
-                }
-            })
-        );
-
-        // Filter out null values and sort by timestamp if available
-        const validMessages = messages.filter(msg => msg !== null);
+        // Messages are already embedded in the manifest, no need for additional API calls
+        // Just ensure each message has the filename and lastModified fields
+        const validMessages = messages.map(msg => ({
+            ...msg,
+            lastModified: msg.filename || 'unknown' // Use filename as identifier
+        }));
         
         // Sort messages (newest first if timestamp exists, otherwise by filename)
         validMessages.sort((a, b) => {

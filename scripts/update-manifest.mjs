@@ -17,13 +17,31 @@ async function main() {
             .filter((name) => name.endsWith('.json') && name !== 'manifest.json')
             .sort((a, b) => a.localeCompare(b));
 
+        // Read and include all message contents in the manifest
+        const messages = [];
+        for (const filename of messageFiles) {
+            try {
+                const filePath = path.join(messagesDir, filename);
+                const fileContent = await fs.readFile(filePath, 'utf8');
+                const messageData = JSON.parse(fileContent);
+                // Include the filename for reference
+                messages.push({
+                    ...messageData,
+                    filename
+                });
+            } catch (error) {
+                console.warn(`Failed to read ${filename}:`, error.message);
+                // Skip invalid files but continue processing others
+            }
+        }
+
         const manifest = {
             generatedAt: new Date().toISOString(),
-            messages: messageFiles
+            messages: messages
         };
 
         await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
-        console.log(`Manifest updated with ${messageFiles.length} entries at ${manifestPath}`);
+        console.log(`Manifest updated with ${messages.length} entries at ${manifestPath}`);
     } catch (error) {
         console.error('Failed to update manifest:', error);
         process.exitCode = 1;
